@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All About jQuery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!--Google Fonts!!-->
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .main {
+            border: double 10px;
+            border-radius: 10px;
+            width: 500px;
+            background-color: rgb(248, 252, 202);
+            font-family: 'Silkscreen', cursive;
+            margin-left: 500px;
+        }
+
+        body {
+            padding: 5px;
+            margin-left: 10px;
+            margin-top: 10px;
+        }
+
+        form {
+
+            border-radius: 15px;
+            padding-left: 100px;
+
+        }
+
+        label {
+            display: inline-block;
+            width: 100px;
+        }
+
+        input[type='text']:focus,
+        input[type='password']:focus,
+        input[type='email']:focus,
+        input[type='tel']:focus,
+        input[type='number']:focus {
+            background-color: white;
+            background-color: rgb(77, 221, 214);
+        }
+
+        input[type='text'],
+        input[type='password'],
+        input[type='email'],
+        input[type='tel'],
+        input[type='number'] {
+            width: 200px;
+            padding: 5px;
+            background-color: rgba(77, 221, 214, 0.318);
+
+        }
+
+        input[type='button'] {
+            padding: 5px;
+            background-color: burlywood;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        #submit:hover {
+            color: white;
+            background-color: green;
+        }
+
+        #cancel:hover {
+            color: white;
+            background-color: red;
+        }
+
+        p {
+            display: inline;
+            font-weight: lighter;
+            margin-left: 3px;
+            margin-right: 5px;
+        }
+
+        div.modal {
+            position: absolute;
+            left: 40%;
+            top: 35%;
+            width: 400px;
+            height: 250px;
+            text-align: center;
+            background-color: aquamarine;
+            border: rgba(0, 0, 0, 0.7) solid;
+            border-radius: 25px;
+        }
+
+        img {
+            height: 135px;
+            width: 300px;
+            margin-top: 5px;
+            padding: 3px;
+        }
+
+        #done {
+            position: absolute;
+            bottom: 20px;
+            left: 45%;
+            padding: 5px;
+            background-color: burlywood;
+            border-radius: 10px;
+
+        }
+
+        .btn {
+            text-align: center;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="main">
+        <form><br>
+            <label> Firstname </label>
+            <input type="text" name="firstname" size="15" /> <br> <br>
+            <label> Middlename: </label>
+            <input type="text" name="middlename" size="15" />
+            <br> <br>
+            <label> Lastname: </label>
+            <input type="text" name="lastname" size="15" /> <br> <br>
+            <label>
+                Age:
+            </label>
+            <input type="number" name="age">
+            <br> <br>
+            <label>
+                Course :
+            </label>
+            <select>
+                <option value="Course">Course</option>
+                <option value="BE">BE</option>
+                <option value="B.Tech">B.Tech</option>
+                <option value="BCom">BCom</option>
+                <option value="BCA">BCA</option>
+                <option value="BBA">BBA</option>
+                <option value="MBA">MBA</option>
+                <option value="MCA">MCA</option>
+                <option value="M.Tech">M.Tech</option>
+                <option value="M.S.">M.S.</option>
+            </select>
+
+            <br>
+            <br>
+
+            <label>
+                Gender :
+            </label>
+            <input type="radio" id="m" name="gender" value="Male" style="left:0" />
+            <p for="Male">Male</p>
+            <input type="radio" id="f" name="gender" value="Female" />
+            <p for="Female">Female</p>
+            <input type="radio" id="o" name="gender" value="Other">
+            <p for="Other">Other</p>
+            <br>
+            <br>
+            <label>
+                Phone :
+            </label>
+            <input style="width:30px; margin-right:10px;" type="text" name="country code" value="+91" size="3" />
+            <input type="tel" name="phone" size="10" /> <br> <br>
+            <label>Address:</label>
+            <input type="text" style="width: 200px;height:70px"> <br> <br>
+            <label>
+                Email:
+            </label>
+            <input type="email" id="email" name="email" /> <br>
+            <br> <br>
+            <label>
+                Password:
+            </label>
+            <input type="Password" id="pass" name="pass">
+            <br> <br>
+            <label>
+                Re-type password:
+            </label>
+            <input type="Password" id="repass" name="retype"> <br> <br>
+
+        </form>
+        <div class="btn">
+            <input type="button" value="Submit" id="submit" onclick="submit()">&nbsp;&nbsp;
+            <input type="button" value="Cancel" id="cancel" onclick="cancel()">
+            <br><br>
+        </div>
+    </div>
+    <div class="modal">
+        <img src="/check-mark-1292787__340.webp" alt="Success">
+        <h1>Successfully submitted</h1>
+        <button id="done">Done</button>
+    </div>
+
+    <script>
+        $(document).ready(() => {
+
+            $('.modal').hide();
+            $('#submit').click(() => {
+                confirm('You want to Submit this form');
+                $('.modal').show(100);
+            })
+            $('#cancel').click(() => {
+                confirm('You want to Cancel this form');
+                alert('Cancelled');
+                $('form').trigger("reset");
+            });
+            $('#done').click(() => {
+                $('form').trigger("reset");
+                $('.modal').hide();
+            });
+        });
+    </script>
+</body>
+
+</html>
+</body>
+
+</html>
